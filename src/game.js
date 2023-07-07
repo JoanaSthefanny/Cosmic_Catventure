@@ -7,7 +7,6 @@ class Game {
     this.Circuit = new Circuit(this);
     this.running = true;
     this.started = false;
-    this.winner = false;
   }
 
   preload() {
@@ -36,7 +35,7 @@ class Game {
       this.Track.draw();
       this.Car.draw();
       this.Score.draw();
-      if (this.started && !this.winner) {
+      if (this.started) {
         this.Circuit.draw();
       }
     } else {
@@ -50,10 +49,6 @@ class Game {
   }
 
   overtake() {
-    this.Score.position--;
     this.Score.points++;
-    if (this.Score.position === 1) {
-      this.winner = true;
-    }
   }
 }

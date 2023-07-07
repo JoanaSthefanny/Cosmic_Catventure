@@ -51,7 +51,7 @@ class Car {
 
   toLeft() {
     if (this.left > this.limitLeft) {
-      this.left = this.left - (this.Game.Track.speed / 5);
+      this.left = this.left - (this.Game.Track.speed / 2);
     } else {
       this.explode();
     }
@@ -59,7 +59,7 @@ class Car {
 
   toRight() {
     if (this.left < this.limitRight) {
-      this.left = this.left + (this.Game.Track.speed / 5);
+      this.left = this.left + (this.Game.Track.speed / 2);
     } else {
       this.explode();
     }

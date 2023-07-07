@@ -16,9 +16,6 @@ class Engine {
     this.power = speed / 10;
   }
 
-  brake() {
-    // Sem som de freio
-  }
 
   stop() {
     this.power = 0;

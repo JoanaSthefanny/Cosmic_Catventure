@@ -11,12 +11,6 @@ class Explosion {
   setup() {
     this.width = 100;
     this.height = 100;
-    this.sprite = {
-      width: 100,
-      height: 100,
-      top: 210,
-      left: 240
-    };
   }
 
   show() {
@@ -29,11 +23,7 @@ class Explosion {
       left,
       this.Car.top,
       this.width,
-      this.height,
-      this.sprite.left,
-      this.sprite.top,
-      this.sprite.width,
-      this.sprite.height
+      this.height
     );
   }
 }

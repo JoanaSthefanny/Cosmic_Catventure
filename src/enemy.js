@@ -8,6 +8,7 @@ class Enemy {
 
     this.images = [
       loadImage('img/Meteoro.gif'),
+      loadImage('img/RatoP.gif'),
       loadImage('img/GatoP.png'),
       loadImage('img/Novelo_Pontos.gif'),
       loadImage('img/Novelo_Coracao.gif')
@@ -16,14 +17,14 @@ class Enemy {
   }
 
   setup() {
-    if (this.type === 2 || this.type === 3) {
-      this.speed = 20;
+    if (this.type === 3 || this.type === 4) {
+      this.speed = 1;
     }
     if(this.type === 0){
       this.speed = -2;
     }
-    if(this.type === 1) {
-      this.speed = 20;
+    if(this.type === 1 || this.type === 4) {
+      this.speed = 1;
     }
     this.offset = 10;
     this.top = -this.delay;
@@ -39,11 +40,10 @@ class Enemy {
       this.show();
       this.move();
       if (this.colliding()) {
-        if (this.type !== 3) {
+        if (this.type !== 3 || this.type !== 4) {
           this.Game.Car.control = false;
           setTimeout(function(car) {
             car.control = true;
-            car.sprite = car.defaultSprite;
           }, 500, this.Game.Car);
         }
       }
@@ -54,7 +54,7 @@ class Enemy {
     const precision = 0.5;
     let collision = false;
 
-    if (this.type !== 4) {
+    if (this.type !== 5) {
       collision = collideRectRect(
         this.top,
         this.left,
@@ -71,13 +71,25 @@ class Enemy {
       this.Game.Enemy = this;
     }
 
-    if (collision && this.type === 2) {
+    if(collision && this.type === 0){
+      this.Game.Score.subtractPoints();
+    }
+
+    if(collision && this.type === 1){
+      this.Game.Score.subtractPoints();
+    }
+
+    if(collision && this.type === 2){
+      this.Game.Score.subtractPoints();
+    }
+
+    if (collision && this.type === 3) {
       collision = false;
       this.bonus();
       this.Game.Score.addPoints();
     }
 
-    if (collision && this.type === 3) {
+    if (collision && this.type === 4) {
       collision = false;
       this.bonus();
       this.Game.Score.addSeconds();

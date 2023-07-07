@@ -3,9 +3,8 @@ class Track {
     this.Game = game;
     this.minSpeed = 0;
     this.speed = this.minSpeed;
-    this.maxSpeed = 30;
+    this.maxSpeed = 10;
     this.speedFactor = 0.2;
-    this.brakeFactor = 0.6;
   }
 
   preload() {
@@ -50,20 +49,8 @@ class Track {
   speedDown(brake = false) {
     if (this.speed > this.minSpeed) {
       this.speed = this.speed - this.speedFactor;
-      if (brake) {
-        this.brake();
-      }
-    } else {
-      this.speed = this.minSpeed;
     }
     this.Game.Engine.powerDown(this.speed);
-  }
-
-  brake() {
-    if (this.speed > this.minSpeed) {
-      this.speed = this.speed - this.brakeFactor;
-    }
-    this.Game.Engine.brake();
   }
 
   move() {
