@@ -51,6 +51,7 @@ class Game {
 
   overtake() {
     this.Score.position--;
+    this.Score.points++;
     if (this.Score.position === 1) {
       this.winner = true;
     }

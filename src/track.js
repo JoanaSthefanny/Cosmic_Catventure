@@ -3,7 +3,7 @@ class Track {
     this.Game = game;
     this.minSpeed = 0;
     this.speed = this.minSpeed;
-    this.maxSpeed = 40;
+    this.maxSpeed = 30;
     this.speedFactor = 0.2;
     this.brakeFactor = 0.6;
   }

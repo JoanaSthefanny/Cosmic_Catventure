@@ -3,6 +3,7 @@ class Score {
     this.Game = game;
     this.seconds = 60;
     this.position = 70;
+    this.points = 0;
     this.timeoutOn = false;
   }
 
@@ -21,6 +22,7 @@ class Score {
       } else {
         this.showPosition();
         this.showSeconds();
+        this,this.showPoints();
         if (this.seconds <= 0) {
           this.gameOver();
         }
@@ -47,6 +49,14 @@ class Score {
     textSize(30);
     text('Tempo', width - 30, 50)
     text(this.seconds, width - 30, 90)
+  }
+
+  showPoints() {
+    textAlign(CENTER);
+    fill('#fff');
+    textSize(30);
+    text('Pontos', width/2, 50)
+    text(this.points, width/2, 90)
   }
 
   opening() {
@@ -78,6 +88,11 @@ class Score {
     text('GAME OVER!', width / 2, height / 2)
     this.timeoutSound.stop();
     this.Game.over();
+  }
+
+  addPoints() {
+    this.points = this.points + 10;
+    this.timeoutSoundOff();
   }
 
   addSeconds() {
