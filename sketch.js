@@ -1,20 +1,20 @@
 let game;
 
 function preload() {
-  game = new Game();
-  game.preload();
+  game = new Game(); // Cria uma instância do objeto Game
+  game.preload(); // Executa a função preload do objeto Game para carregar os recursos
 }
 
 function setup() {
-  game.setup();
+  game.setup(); // Executa a função setup do objeto Game para configurar o jogo
 }
 
 function draw() {
-  game.draw();
+  game.draw(); // Executa a função draw do objeto Game para atualizar e renderizar o jogo
 }
 
 function keyPressed() {
   if (keyCode === ENTER) {
-    game.start();
+    game.start(); // Inicia o jogo quando a tecla ENTER é pressionada
   }
 }
