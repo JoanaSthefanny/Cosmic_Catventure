@@ -4,17 +4,21 @@ class Score {
     this.seconds = 60; // Tempo inicial em segundos
     this.points = 0; // Pontuação inicial
     this.timeoutOn = false; // Flag para controlar o timeout
+    this.intervalId = null; // Inicializa como nulo
   }
 
   preload() {
     // Nenhum carregamento necessário
   }
 
+
   start() {
-    setInterval(function(score) {
-      score.seconds--; // Decrementa o tempo a cada segundo
-    }, 1000, this);
+    this.intervalId = setInterval(() => {
+      this.seconds--; // Decrementa o tempo a cada segundo
+    }, 1000);
   }
+
+
 
   draw() {
     if (this.Game.started) {
@@ -26,44 +30,75 @@ class Score {
     } else {
       this.opening(); // Exibe a tela de abertura antes de iniciar o jogo
     }
+    
   }
 
-  showSeconds() {
-    textAlign(RIGHT);
-    fill('#fff');
-    textSize(30);
-    text('Tempo', width - 30, 50);
-    text(this.seconds, width - 30, 90); // Exibe o tempo restante no canto superior direito
+  reset() {
+    this.seconds = 60; // Reinicia o tempo restante para o valor inicial
+    this.points = 0; // Reinicia a pontuação para o valor inicial
+    this.timeoutOn = false; // Flag para controlar o timeout
+    if (this.intervalId !== null) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
   }
 
-  showPoints() {
-    textAlign(CENTER);
-    fill('#fff');
-    textSize(30);
-    text('Pontos', width/2, 50);
-    text(this.points, width/2, 90); // Exibe a pontuação no centro da tela
+  showSeconds() { // conta os segundos
+    const timeDisplay = document.getElementById('time-display');
+    timeDisplay.textContent = `${this.seconds}`;
+  }
+
+  showPoints() { // conta o tempo
+    const pointsDisplay = document.getElementById('points-display')
+    pointsDisplay.textContent = `${this.points}`;
   }
 
   opening() {
     textAlign(CENTER);
     fill('#fff');
     textSize(40);
-    text('ROAD FIGHTER', width / 2, height / 2 - 50); // Título do jogo
-    textSize(20);
-    text('[ENTER] Para começar!', width / 2, height / 2); // Instrução para começar o jogo
-    text('A  Acelerar', width / 2, height / 2 + 40); // Instrução para acelerar
-    text('<- Esquerda', width / 2, height / 2 + 60); // Instrução para mover para a esquerda
-    text('-> Direita', width / 2, height / 2 + 80); // Instrução para mover para a direita
+    textFont('pixel');
+    text('Cosmic CatVenture', width / 2, height / 2 - 50); // Título do jogo
+
+    // adiciona uma imagem mostrando as teclas utilizadas para manusear o jogo
+    const imagemContainer = document.createElement('div');
+    imagemContainer.style.position = 'absolute';
+    imagemContainer.id = 'imagem-container'; // Adiciona o ID ao container
+    imagemContainer.style.top = `${height / 2 - 250}px`;
+    imagemContainer.style.left = '50%';
+    imagemContainer.style.transform = 'translateX(-50%)';
+    
+    const imagem = document.createElement('img');
+    imagem.src = 'img/setas.png';
+    imagem.id = 'setas-image';
+
+
+    imagemContainer.appendChild(imagem);
+    document.body.appendChild(imagemContainer);
+
+    
   }
 
+  hideImage() { // retira a imagem das teclas de utilização quando o jogo inicia
+    const image = document.getElementById('imagem-container');
+    if (image) {
+      image.parentNode.removeChild(image); // remove a imagem
+    }
+  }
+  
   gameOver() {
     textAlign(CENTER);
     fill('#ed1c24');
     textSize(50);
     text('GAME OVER!', width / 2, height / 2); // Mensagem de "GAME OVER!"
-    this.Game.over(); // Encerra o jogo
+    textSize(20);
+    fill('#fff');
+    text(`Pontuação: ${this.Game.Score.points}`, width / 2, height / 2 + 40);   
+
+    this.Game.over(); // Encerra o jogo  
   }
 
+  
   addPoints() {
     this.points = this.points + 10; // Adiciona 10 pontos à pontuação atual
   }

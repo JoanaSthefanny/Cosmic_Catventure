@@ -7,14 +7,21 @@ function preload() {
 
 function setup() {
   game.setup(); // Executa a função setup do objeto Game para configurar o jogo
+  
+  
+  
+
+ 
 }
 
 function draw() {
   game.draw(); // Executa a função draw do objeto Game para atualizar e renderizar o jogo
 }
-
+/*
 function keyPressed() {
   if (keyCode === ENTER) {
     game.start(); // Inicia o jogo quando a tecla ENTER é pressionada
   }
-}
+}*/
+
+

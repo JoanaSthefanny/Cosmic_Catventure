@@ -16,7 +16,7 @@ class Enemy {
     ];
     this.image = this.images[type]; // Imagem do inimigo correspondente ao seu tipo
   }
-
+  
   setup() {
     // Configuração inicial do inimigo
     if (this.type === 3 || this.type === 4) {
@@ -34,6 +34,27 @@ class Enemy {
     this.left = this.initialLeft - this.offset; // Posição horizontal ajustada do inimigo
     this.width = 100; // Largura do inimigo
     this.height = 100; // Altura do inimigo
+  }
+
+  reset() {
+    this.visible = true; // Torna o inimigo visível
+    this.top = -this.delay; // Posição vertical inicial do inimigo
+    this.left = this.initialLeft - this.offset; // Posição horizontal ajustada do inimigo
+
+    // Outras configurações iniciais do inimigo
+    if (this.type === 3 || this.type === 4) {
+      this.speed = 1; // Velocidade do inimigo do tipo 3 e 4
+    }
+    if (this.type === 0) {
+      this.speed = -2; // Velocidade do inimigo do tipo 0
+    }
+    if (this.type === 1 || this.type === 2) {
+      this.speed = 1; // Velocidade do inimigo do tipo 1 e 2
+    }
+
+    // Reposicione outras propriedades conforme necessário
+
+    this.visible = true; // Torna o inimigo visível novamente
   }
 
   draw() {

@@ -17,6 +17,25 @@ class Circuit {
       }
     }
   }
+  
+  reset() {
+    this.enemies = []; // Limpa o array de inimigos
+    this.currentEnemy = 0; // Índice do próximo inimigo a ser adicionado
+    this.map = []; // Limpa o mapa de inimigos existente
+
+    
+    // Gera o novo mapa de inimigos aleatoriamente
+    while (true) {
+      const type = Math.random() < 0.2 ? Math.floor(Math.random() * 2) + 3 : Math.floor(Math.random() * 3); // 20% de chance para tipos 3 e 4, e 80% de chance para tipos 0, 1 e 2
+      const horizontal = Math.random() * 1.2 - 0.6; // Valores entre -0.6 e 0.6
+      const vertical = Math.floor(Math.random() * 111) + 100; // Valores entre 100 e 210
+      this.map.push([type, horizontal, vertical]);
+
+      if (this.map.length >= 100) {
+        break; // Encerra o loop após gerar 100 valores aleatórios
+      }
+    }
+  }
 
   draw() {
     for (let i = 0; i < this.enemies.length; i++) {

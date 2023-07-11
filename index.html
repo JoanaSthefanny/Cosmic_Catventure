@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Cat Adventure</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/bmoren/p5.collide2D/p5.collide2d.min.js"></script>
@@ -10,6 +11,26 @@
 
   </head>
   <body>
+
+    
+    <div class="painel-informacoes">
+      <div id="informacoes">
+        <div id="pontuacao">Energia: <span id="time-display"></span> </div>
+        <div id="energia">Pontuação: <span id="points-display"></span></div>
+        <div id="velocidade">Velocidade: <span id="speed-display"></span> anos luz</div>
+      </div>
+    </div>
+
+    <div class="cenarios">
+      <div id="cenario">
+        CENARIOS
+        <button class="button" id="cenario1">cenario 01</button>
+        <button class="button" id="cenario2">cenario 02</button>
+        <button class="button" id="cenario3">cenario 03</button>
+        <button class="button" id="cenario4">cenario 04</button>
+      </div>
+    </div>
+    
     <script src="src/engine.js"></script>
     <script src="src/explosion.js"></script>
     <script src="src/car.js"></script>

@@ -5,3 +5,112 @@ html, body {
 canvas {
   display: block;
 }
+
+@font-face {
+  font-family: 'pixel';
+  src: url(fontes/VCR_OSD_MONO_1.001.ttf);
+}
+
+.painel-informacoes {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 280px;
+  height: 100px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgb(46, 3, 35);
+  margin: 0 0;
+
+  border: 10px solid rgb(133, 20, 161);
+  border-radius: 20px;
+  line-height: 1.5;
+
+}
+
+
+.painel-informacoes #informacoes {
+
+  margin: 0 0 15px 10px;
+  color: white;
+  font-size: 17px;
+  font-family: pixel;
+}
+
+
+.cenarios {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  width: 200px;
+  height: 200px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(46, 3, 35);
+  margin: 0 0;
+
+  border: 10px solid rgb(133, 20, 161);
+  border-radius: 20px;
+  line-height: 1.5;
+
+}
+
+
+#cenario {
+  display:  flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+  font-family: pixel;
+}
+
+.button{
+
+  width: 150px;
+  height: 40px;
+  border-radius: 15px;
+  background-color: rgb(189, 127, 248);
+}
+.restart-button{
+  border: solid 1px rgb(254, 254, 255) ;
+  border-radius: 20px;
+  padding: 15px 10px;
+  color: rgb(255, 255, 255);
+  font-family: pixel;
+  font-size: 24px;
+  background-color: rgb(103, 16, 121);
+  transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+}
+.restart-button:hover{
+  background-color: rgb(78, 7, 78);
+  color: white;
+  transform: scale(1.2)
+}
+
+.start-button{
+  border: solid 1px rgb(254, 254, 255) ;
+  border-radius: 20px;
+  padding: 15px 10px;
+  color: rgb(255, 255, 255);
+  font-family: pixel;
+  font-size: 24px;
+  background-color: rgb(103, 16, 121);
+  transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+}
+.start-button:hover{
+  background-color: rgb(78, 7, 78);
+  color: white;
+  transform: scale(1.2)
+}

@@ -4,6 +4,7 @@ class Car {
     this.Explosion = new Explosion(this); // Instância da classe Explosion para lidar com explosões
     this.visible = true; // Indica se o carro é visível na tela
     this.control = true; // Indica se o carro está sob controle do jogador
+    this.speedReduced = false;
 
     // Imagens do carro
     this.defaultImage = loadImage('img/GatoP.gif');
@@ -13,6 +14,15 @@ class Car {
 
   preload() {
     this.Explosion.preload(); // Carrega os recursos necessários para a explosão
+  }
+
+  reset() {
+    this.visible = true; // Define a visibilidade do carro como true
+    this.control = true; // Define o controle do carro como true
+    this.image = this.defaultImage; // Define a imagem do carro como a imagem padrão
+    this.left = this.initialLeft; // Define a posição horizontal do carro como a posição inicial
+
+    // Outras configurações ou propriedades relevantes podem ser reiniciadas aqui
   }
 
   setup() {
@@ -26,7 +36,7 @@ class Car {
     this.image = this.defaultImage; // Imagem atual do carro
     this.limitLeft = parseInt(this.Game.Track.width * 0.25); // Limite esquerdo de movimento
     this.limitRight = parseInt(this.Game.Track.width * 0.75) - this.width + this.offset; // Limite direito de movimento
-    this.Explosion.setup(); // Configura a explosão
+    //this.Explosion.setup(); // Configura a explosão
   }
 
   draw() {
@@ -43,41 +53,56 @@ class Car {
       } else {
         this.loseControl(); // Perdeu o controle do carro
       }
-    } else {
-      this.Explosion.show(); // Exibe a explosão do carro
+      this.showSpeed();
     }
+      
   }
-
+ 
   show() {
     // Exibe a imagem do carro na posição atual
     image(this.image, this.left, this.top, this.width, this.height);
   }
 
+  
   toLeft() {
-    if (this.left > this.limitLeft) {
-      // Move o carro para a esquerda até o limite esquerdo
+    if (this.left > this.limitLeft) {   
       this.left = this.left - (this.Game.Track.speed / 2);
-    } else {
-      this.explode(); // O carro atingiu o limite esquerdo e explode
+     
+    } else  {
+        this.reduceSpeed(); // Reduz a velocidade da pista em 15% se estiver apenas no limite sem acelerar
+      }
     }
-  }
-
+  
+ 
   toRight() {
     if (this.left < this.limitRight) {
       // Move o carro para a direita até o limite direito
       this.left = this.left + (this.Game.Track.speed / 2);
     } else {
-      this.explode(); // O carro atingiu o limite direito e explode
+      this.reduceSpeed(); // Reduz a velocidade do carro em 15%
     }
   }
 
-  explode() {
-    this.stop(); // Para o carro e inicia o processo de explosão
-    setTimeout(function(car) {
-      car.start(); // Reinicia o carro após um atraso de 2 segundos
-    }, 2000, this);
+  reduceSpeed() {
+    this.Game.Track.speed *= 0.85; // Reduz a velocidade da pista em 15% (85% da velocidade atual)
+    this.Game.Engine.powerDown(this.Game.Track.speed); // Atualiza a potência do motor do carro
   }
-
+  
+  showSpeed() { // exibe a velocidade do carro
+    const speedDisplay = document.getElementById('speed-display');
+    speedDisplay.textContent = `${this.Game.Track.speed.toFixed(2)}`;
+    //NumberFormat.getCurrencyInstance();
+  }
+/*
+  speedCheck() {
+    if (this.left > this.limitLeft && this.left < this.limitRight) {
+      this.speedReduced = false; // Carro está dentro dos limites, redefine a flag de velocidade reduzida como false
+    } else {
+      this.reduceSpeed();
+      this.speedReduced = true; // Carro está fora dos limites, define a flag de velocidade reduzida como true
+    }
+  }
+*/
   start() {
     // Reinicia o carro para a posição inicial e reativa a visibilidade e controle
     this.left = this.initialLeft;
