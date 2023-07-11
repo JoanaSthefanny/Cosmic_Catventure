@@ -4,10 +4,6 @@ class Engine {
     this.power = 0; // Valor atual da potência do motor
   }
 
-  preload() {
-    // Pré-carregamento (não há implementação neste exemplo)
-  }
-
   powerUp(speed) {
     this.power = speed / 2; // Aumenta a potência do motor com base na velocidade
   }

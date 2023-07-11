@@ -19,10 +19,6 @@ class Track {
    
   }
 
-  preload() {
-   // this.image = loadImage('img/pista01.jpeg'); // Carrega a imagem da pista
-  }
-
 
   setup() {
     this.height = height; // Altura da tela
